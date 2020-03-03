@@ -30,6 +30,8 @@ namespace People
 
                 result = await conn.InsertAsync(new Person { Name = name });
 
+                await App.Up.PerformBlobOperation();
+
                 StatusMessage = string.Format("{0} record(s) added [Name: {1})", result, name);
             }
             catch (Exception ex)
@@ -57,6 +59,7 @@ namespace People
             try
             {
                 await conn.ExecuteAsync("DELETE FROM People");
+                await App.Up.PerformBlobOperation();
             }
             catch (Exception ex)
             {

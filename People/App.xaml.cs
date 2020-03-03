@@ -11,10 +11,13 @@ namespace People
         string dbPath => FileAccessHelper.GetLocalFilePath("people.db3");
 
         public static PersonRepository PersonRepo { get; private set; }
+        public static AzureUpdate Up { get; private set; }
 
         public App()
         {
             InitializeComponent();
+
+            Up = new AzureUpdate(dbPath);
 
             PersonRepo = new PersonRepository(dbPath);
 
